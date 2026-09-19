@@ -14,15 +14,10 @@ MAX_CHUNK_CHARS = 9000
 TOP_CHUNKS = 8
 
 def get_api_key():
-    # Streamlit Cloud: add XAI_API_KEY in App Settings > Secrets.
-    key = os.getenv("XAI_API_KEY")
-    if key:
-        return key
     try:
-        return st.secrets["XAI_API_KEY"]
+        return st.secrets["GROK_API_KEY"]
     except Exception:
-        return None
-
+        return os.getenv("GROK_API_KEY")
 def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
